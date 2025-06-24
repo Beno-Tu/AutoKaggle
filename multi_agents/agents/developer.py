@@ -247,7 +247,7 @@ class Developer(Agent):
             logger.info(f"All error messages saved to {filename}")
 
     def _conduct_unit_test(self, state: State) -> None:
-        test_tool = TestTool(memory=None, model=self.model, type='api')
+        test_tool = TestTool(memory=None, model=self.model, type=self.type)
         not_pass_flag = False
         not_pass_tests = test_tool.execute_tests(state) # [(test1_number, test1_information), ...] if all pass return []
         logger.info(f"There are {len(not_pass_tests)} not pass tests.")
@@ -303,7 +303,7 @@ class Developer(Agent):
             output_messages = ""
 
         logger.info("Start debugging the code.")
-        debug_tool = DebugTool(model='gpt-4o', type='api')
+        debug_tool = DebugTool(model=self.model, type=self.type)
         if error_flag:
             tools, tool_names = self._get_tools(state)
             reply, single_round_debug_history = debug_tool.debug_code_with_error(state, copy.deepcopy(self.all_error_messages), output_messages, previous_code, wrong_code, error_messages, tools, tool_names)
