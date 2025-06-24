@@ -134,3 +134,7 @@ wheel==0.43.0
 wrapt==1.16.0
 xgboost==2.1.1
 zipp==3.19.2
+
+torch
+transformers
+accelerate
