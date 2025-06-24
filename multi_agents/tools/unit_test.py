@@ -731,5 +731,12 @@ Id,SalePrice
             return False, 39, f"The submission.csv file has {len(submission_df)} rows, but the sample_submission.csv has {len(sample_df)} rows. Please ensure that your submission file includes predictions for all test samples."
 
 if __name__ == '__main__':
-    test_tool = TestTool(memory=None, model='gpt-4o', type='api')
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model', default='gpt-4o', help='LLM model name')
+    parser.add_argument('--type', default='api', help='LLM invocation type')
+    args = parser.parse_args()
+
+    test_tool = TestTool(memory=None, model=args.model, type=args.type)
     test_tool._execute_tests()

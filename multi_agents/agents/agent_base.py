@@ -33,6 +33,7 @@ class Agent:
         self.description = description
         self.llm = LLM(model, type)
         self.model = model
+        self.type = type
         logger.info(f'Agent {self.role} is created with model {model}.')
 
     def _gather_experience_with_suggestion(self, state: State) -> str:
