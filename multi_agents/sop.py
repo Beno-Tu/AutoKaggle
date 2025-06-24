@@ -29,15 +29,15 @@ class SOP:
 
     def _create_agent(self, agent_name: str):
         if agent_name == "Reader":
-            agent = Reader('gpt-4o-mini', 'api')
+            agent = Reader(self.model, 'local')
         elif agent_name == "Planner":
-            agent = Planner(self.model, 'api')
+            agent = Planner(self.model, 'local')
         elif agent_name == "Developer":
-            agent = Developer('gpt-4o', 'api')
+            agent = Developer(self.model, 'local')
         elif agent_name == "Reviewer":
-            agent = Reviewer('gpt-4o-mini', 'api')
+            agent = Reviewer(self.model, 'local')
         elif agent_name == "Summarizer":
-            agent = Summarizer('gpt-4o-mini', 'api')
+            agent = Summarizer(self.model, 'local')
         else:
             return None
         return agent
